@@ -32,3 +32,10 @@ print("Voici la main du joueur 2 : {}".format(joueur2))
 
 print("\nPaquet après distribution :")
 print(p1)
+
+talon = [p1.piocher()]
+print('\nLe talon : ')
+print(talon)
+
+print("\nPaquet après formation du talon :")
+print(p1)
