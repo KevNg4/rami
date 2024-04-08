@@ -26,7 +26,7 @@ print("\nPaquet après pioche :")
 print(p1)
 
 print("\nMains :")
-joueur1, joueur2 = p1.distribuer(2, 3)
+joueur1, joueur2 = p1.distribuer(2, 13)
 print("Voici la main du joueur 1 : {}".format(joueur1))
 print("Voici la main du joueur 2 : {}".format(joueur2))
 
