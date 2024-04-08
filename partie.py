@@ -31,5 +31,10 @@ for i, joueur in enumerate(liste_joueurs, start=1):
 paquet = Paquet()
 paquet.melanger()
 paquet.couper()
-# Distribution
+print('\nLe paquet a été mélangé puis coupé!')
+
+distributions = paquet.distribuer(nb_joueurs, 13) # distribution
+for i, joueur in enumerate(liste_joueurs):
+    joueur.main = distributions[i]
+
 talon = [paquet.piocher()]
