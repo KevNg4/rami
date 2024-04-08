@@ -7,6 +7,8 @@ class Paquet:
            for valeur in Carte.valeurs_valides:
                c = Carte(valeur, couleur)
                self.cartes.append(c)
+        self.cartes.append(Carte('JOKER', 'JOKER'))
+        self.cartes.append(Carte('JOKER', 'JOKER'))
 
    def __repr__(self):
        return str(self.cartes) # la représentation de l'objet ne peut être une liste (d'où le str)
