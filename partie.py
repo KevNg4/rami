@@ -3,7 +3,7 @@ from joueur import Joueur
 
 print('Bienvenue dans le Rami!\n')
 
-while True:
+while True: # nombre de joueurs
     try:
         nb_joueurs = int(input("Combien de joueurs ? : "))
         if 2 <= nb_joueurs <= 6:
@@ -15,7 +15,18 @@ while True:
     except ValueError:
         print("Erreur : Vous devez entrer un nombre de joueurs")
 
-joueurs = [Joueur() for i in range(nb_joueurs)]
+liste_joueurs = [] # liste comportant les objets "joueur"
+
+for i in range(1, nb_joueurs + 1): # demande nom du joueur et attribution du numéro
+    nom = input("Entrez le nom du joueur {0}: ".format(i))
+    num = i
+    joueur = Joueur(nom)
+    joueur.numero = num
+    liste_joueurs.append(joueur)
+
+print('\nLes joueurs sont :') # récapitulatif des joueurs
+for i, joueur in enumerate(liste_joueurs, start=1):
+    print("Joueur {0}: {1}".format(joueur.numero, joueur.nom))
 
 paquet = Paquet()
 paquet.melanger()
