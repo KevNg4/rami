@@ -38,3 +38,4 @@ for i, joueur in enumerate(liste_joueurs):
     joueur.main = distributions[i]
 
 talon = [paquet.piocher()]
+print(talon)
