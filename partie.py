@@ -5,7 +5,7 @@ from joueur import Joueur
 
 print('Bienvenue dans le Rami!\n')
 
-while True: # nombre de joueurs
+while True: # demande du nombre de joueurs
     try:
         nb_joueurs = int(input("Combien de joueurs ? : "))
         if 2 <= nb_joueurs <= 6:
@@ -26,9 +26,10 @@ for i in range(1, nb_joueurs + 1): # demande le nom du joueur et attribution du 
     joueur.numero = num 
     liste_joueurs.append(joueur) # ajour du joueur dans la liste
 
-print('\nLes joueurs sont :') # récapitulatif des joueurs
+print('\nRECAPULATIF : Les joueurs sont :') # récapitulatif des joueurs
 for i, joueur in enumerate(liste_joueurs, start=1):
     print("Joueur {0} : {1}".format(joueur.numero, joueur.nom))
+print('\n' + '*' * 50) # séparateur pour l'esthétique 
 
 paquet = Paquet() # création d'un paquet de cartes
 paquet.melanger() # on mélange le paquet
@@ -40,21 +41,27 @@ for i, joueur in enumerate(liste_joueurs):
     joueur.main = distributions[i] # les cartes des joueurs sont stockées dans l'attribut main de chaque objet joueur (qui est une liste)
 
 talon = [paquet.piocher()] # création du talon (une liste) par l'ajout d'une carte de la pioche dans le talon
-print(talon)
+print(f"\nLa carte du dessus du talon est : {talon[-1]}") # affiche la carte du dessus du talon
+print("\nLa partie peut commencer!")
+input("\nAppuyez sur la touche Entrer pour commencer")
+print('\n' + '*' * 50) # séparateur pour l'esthétique 
 
 indice_joueur = random.randint(0, len(liste_joueurs) - 1) # choix aléatoire du joueur qui commence la partie
 compteur_passe = 0 # nombre de passes successives
+
 while True:
     joueur = liste_joueurs[indice_joueur] # joueur qui joue
     print(f"\nC'est au tour du joueur {joueur.numero} : {joueur.nom}")
+    input("\nEntrer pour valider")
     print("\nNombre de passe actuellement: {}".format(compteur_passe))
 
     pioche = paquet.piocher() # carte piochée par le joueur
     joueur.main.append(pioche) # ajout de la carte piochée à la main du joueur
-    print("\nVous avez piocher : {}".format(pioche))
+    print("\nVous avez pioché : {}".format(pioche))
     
     print("\nVoici vos cartes : ")
-    print(joueur.main)
+    for position, carte in enumerate(joueur.main, start=1):
+        print(f"{position} : {carte}")
     
     cartes_choisies = joueur.combinaison() # récupération des cartes choisies par la méthode combinaision
     if len(cartes_choisies) == 0: # si la liste de cartes choisies est vide
@@ -64,44 +71,32 @@ while True:
             talon.append(carte)
             compteur_passe = 0 # rénitialisation du compteur de passes
     
-    print("\nVoici vos cartes après la pose de combinaison ")
-    print(joueur.main)
+    print("\nVoici vos cartes après choix :")
+    for position, carte in enumerate(joueur.main, start=1):
+            print(f"{position} : {carte}")
     
-    # insérer code=> rejetter une carte
+    print(f"\nLa carte du dessus du talon est : {talon[-1]}") # affiche la carte du dessus du talon
     
-    print("\nTalon après choix et rejet : ")
-    print(talon)
+    print('\nVeuillez rejeter une carte de votre main dans le talon')
+    carte_rejetee = joueur.rejeter()
+    talon.append(carte_rejetee)
+    
+    print(f"\nLa carte du dessus du talon est : {talon[-1]}") # affiche la carte du dessus du talon
     
     if len(joueur.main) == 0: # mettre fin au jeu si la main du joueur ne contient plus de carte
         print(f"\nLe joueur {joueur.numero} : {joueur.nom} a gagné! BRAVO!")
         print("\nFIN DE LA PARTIE")
         break # permet de stopper la boucle qui permet de passer à un autre joueur
     
+    input("\nEntrer pour terminer votre tour et passer au joueur suivant")
+    print('\n' + '*' * 50) # séparateur pour l'esthétique 
+    
     if compteur_passe == len(liste_joueurs): # si tous les joueurs ont passé
         print("\nAucun joueur n'a pu poser de combinaison. La partie est terminée!")
-        joueur_gagnant = min(liste_joueurs, key=lambda joueur: len(joueur.main)) # à expliquer
+        joueur_gagnant = min(liste_joueurs, key=lambda joueur: len(joueur.main)) # C'est une fonction, mais à expliquer...
         print(f"\nLe joueur {joueur_gagnant.numero} : {joueur_gagnant.nom} a gagné avec la main la plus petite. BRAVO!")
         print("\nFIN DE LA PARTIE")
         break
     # et s'il y a égalité???
-
-
-# pioche obligatoire
-""" print("\nMain du joueur AVANT pioche : ")
-print(liste_joueurs[0].main)
-liste_joueurs[0].main.append(paquet.piocher())
-print("\nMain du joueur APRES pioche : ")
-print(liste_joueurs[0].main)
-
-
-for carte in liste_joueurs[0].combinaison():
-    talon.append(carte)
-
-print("\nMain du joueur après choix : ")
-print(liste_joueurs[0].main)
-print("\nTalon après choix : ")
-print(talon) """
-
-
-# choix combinaison
-# check combinaison ok
+    
+    indice_joueur = (indice_joueur + 1) % len(liste_joueurs) # permet de passer au joueur suivant en incrémentant l'indice de liste_joueurs de 1 et de revenir au premier joueur après le dernier joueur de la liste

@@ -2,13 +2,14 @@ from carte import Carte
 from random import shuffle, randrange
 class Paquet:
    def __init__(self):
-       self.cartes = []
-       for couleur in Carte.couleurs_valides:
+       self.cartes = [] # cartes du paquet (attribut)
+       for couleur in Carte.couleurs_valides: 
            for valeur in Carte.valeurs_valides:
-               c = Carte(valeur, couleur)
-               self.cartes.append(c)
-       self.cartes.append(Carte('JOKER', 'JOKER'))
-       self.cartes.append(Carte('JOKER', 'JOKER'))
+                point = Carte.valeurs_valides.index(valeur) + 1 # la carte prend comme valeur numérique
+                self.cartes.append(Carte(valeur, couleur, point))
+       joker = Carte('JOKER', 'JOKER', 0) #carte joker
+       self.cartes.append(joker) # ajout d'un joker ayant pour valeur en terme de point 0
+       self.cartes.append(joker) # idem
 
    def __repr__(self):
        return str(self.cartes) # la représentation de l'objet ne peut être une liste (d'où le str)
