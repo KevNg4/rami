@@ -1,3 +1,5 @@
+from carte import Carte
+
 class Joueur:
     def __init__(self, nom='', point=0):
         self.nom = nom
@@ -6,7 +8,7 @@ class Joueur:
 
     def combinaison(self): # on aurait pu l'appeller chosir (verbe) car c'est une action...
         while True: 
-            choix = input("\nEntrez les numéros des cartes que vous souhaitez poser, séparés par des espaces, ou appuyez entrer si vous souhaitez ne rien poser : ")
+            choix = input("\n* Entrez les numéros des cartes que vous souhaitez poser, séparés par des espaces, ou appuyez entrer si vous souhaitez ne rien poser : ")
             cartes_choisies = [] # pour stocker les cartes choisies
             # Traitement des entrées de l'utilisateur 
             try: # pas de littéral dans la saisie
@@ -23,6 +25,11 @@ class Joueur:
                
             for indice in sorted(indices, reverse=True): # ajout des cartes choisies dans cartes_choisies sans prendre en compte les conditions
                 cartes_choisies.append(self.main[indice])
+            
+            for carte in cartes_choisies:
+                if carte.valeur == "JOKER":
+                    carte.modifier() # même si la combinaison est fausse, le joker garde la valeur et la couleur que vous avez choisi
+            
             # Règles de combinaisons
             if len(cartes_choisies) >= 1 and len(cartes_choisies) <= 2: # condition 1: il faut au moins 3 cartes pour poser une combinaison
                 print("\nVeuillez choisir au moins 3 cartes")
@@ -49,14 +56,16 @@ class Joueur:
                 break
             else:
                 print("\nCombinaison incorrecte: Les valeurs des cartes ne se suivent pas ou n'ont pas une différence de 1") 
-                cartes_choisies = []
+                cartes_choisies = []         
         
+        cartes_choisies.sort(key=lambda carte: (carte.point)) # pour ordonner la liste cartes_choisies par point 
+        print(f"Vous avez donc posé : {cartes_choisies}")
         return cartes_choisies
     
     def rejeter(self):
         while True:
             try: # pas de littéral dans la saisie
-                choix = int(input("\nEntrez le numéro de la carte que vous voulez rejeter : ")) 
+                choix = int(input("\n* Entrez le numéro de la carte que vous voulez rejeter : ")) 
             except ValueError:
                 print("ERREUR : saisie de carte incorrecte")
                 continue # pour rester dans la boucle while et ne pas mettre fin à la partie
@@ -70,3 +79,6 @@ class Joueur:
                 break
             
         return carte_rejetee
+
+    def trier(self):
+        self.main.sort(key=lambda carte: (carte.couleur, carte.point))

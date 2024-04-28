@@ -1,7 +1,8 @@
 from carte import Carte
 from paquet import Paquet
+from joueur import Joueur
 
-c = Carte("DAME", "PIQUE")
+c = Carte("DAME", "PIQUE", 12)
 print(c.valeur)
 print(c.couleur)
 print(c.points())
@@ -62,3 +63,4 @@ for i, joueur in enumerate(liste_joueurs):
 talon = [paquet.piocher()]
 
 print(type(talon[0]))
+
