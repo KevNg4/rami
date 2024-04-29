@@ -3,7 +3,7 @@ from paquet import Paquet
 from joueur import Joueur
 
 
-print('Bienvenue dans le Rami!\n')
+print('Bienvenue dans le rami!\n')
 
 while True: # demande nombre joueurs
     try:
