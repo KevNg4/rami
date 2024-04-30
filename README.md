@@ -22,15 +22,15 @@ Le gagnant est le joueur qui a le moins de carte dans son jeu quand plus aucune 
 possible ou bien aucune carte en premier.
 
 **Fait**
- - Choix du nombre de joueur
- - Choix de la la valeur de l'AS
- - Prise en compte des jokers
+ - Choix du nombre de joueurs
+ - Choix de la valeur de l'AS
+ - Pris en compte des jokers
  - Règles basiques de combinaisons
  - Gestion de la pioche vide
  - Gestion de la fin de partie 
 
 **Non fait (car facultatif)** 
- - Facultatif : pioche soit dans la pioche, soit la carte du talon retournée
+ - Facultatif : piocher soit dans la pioche, soit la carte du talon retournée
  - Facultatif : une fois le jeu commencé, les joueurs peuvent enrichir les combinaisons déjà posées (par exemple, rajouter le 4ème valet ou mettre un 10 de cœur après un 9 de cœur).
  - Facultatif : le joker peut être remplacé par la carte correspondante par un autre joueur, dans ce cas, le joueur ne peut le conserver dans son jeu, il doit le réutiliser immédiatement dans une autre combinaison.
 
