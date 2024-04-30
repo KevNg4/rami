@@ -42,3 +42,5 @@ for position, carte in enumerate(joueur.main, start=1):
 print("Fin du test") """
 
 """ joueur.combinaison() """
+
+print("fin")

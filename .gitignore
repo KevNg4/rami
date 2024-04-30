@@ -1,6 +1,6 @@
+lab.py
 .idea/
 .vscode/
 .DS_Store
 __pycache__/
-lab.py
-main.py
+
