@@ -1,6 +1,6 @@
 class Carte:
     couleurs_valides = ("TREFLE", "COEUR", "CARREAU", "PIQUE")
-    valeurs_valides = tuple(list(range(1, 11)) + ["VALET", "DAME", "ROI"])
+    valeurs_valides = tuple(["AS"] + list(range(2, 11)) + ["VALET", "DAME", "ROI"])
 
     def __init__(self, valeur, couleur, point):
         self.valeur = valeur

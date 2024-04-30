@@ -8,13 +8,15 @@ paquet.couper()
 talon = [paquet.piocher()]
 joueur = Joueur()
 
-joueur.main = paquet.distribuer(1, 13)[0] # distribution
-print(joueur.main)
+""" joueur.main = paquet.distribuer(1, 13)[0] # distribution
+print(joueur.main) """
 
-print("\nVoici vos cartes : ")
+
+
+""" print("\nVoici vos cartes : ")
 joueur.trier()
 for position, carte in enumerate(joueur.main, start=1):
-    print(f"{position} : {carte}")
+    print(f"{position} : {carte}") """
 
 """ for carte in joueur.main:
     if carte.valeur == "JOKER":
@@ -39,4 +41,4 @@ for position, carte in enumerate(joueur.main, start=1):
 
 print("Fin du test") """
 
-joueur.combinaison()
+""" joueur.combinaison() """

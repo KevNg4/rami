@@ -13,9 +13,10 @@ while True: # demande nombre joueurs
         elif nb_joueurs > 6:
             print("Le rami se joue à 6 maximum")
         else:
-            print("Erreur : Vous devez entrer un nombre de joueurs")
+            print("ERREUR : Vous devez entrer un nombre de joueurs")
     except ValueError:
-        print("Erreur : Vous devez entrer un nombre de joueurs")
+        print("ERREUR : Vous devez entrer un nombre de joueurs")
+        
 
 liste_joueurs = [] # liste joueurs (objets de la classe Joueur)
 
@@ -36,6 +37,16 @@ paquet.melanger() # mélange paquet
 paquet.couper() # coupe paquet
 print('\nLe paquet a été mélangé puis coupé!')
 
+carte_as = input("\n* Voulez-vous que AS soit plus grand que ROI ? (O/N) : ") # choisir valeur carte AS 
+while carte_as.upper() != "O" and carte_as.upper() != "N":
+    print("\nERREUR: saisie incorrecte")
+    carte_as = input("\n* Voulez-vous que AS soit plus grand que ROI ? (O/N) : ")
+if carte_as.upper() == "O": 
+    for carte in paquet.cartes:
+        if carte.valeur == 'AS':
+            carte.point = 14 # si oui à question, alors AS > ROI,
+# pas besoin de else car par défaut AS vaut 1
+
 distributions = paquet.distribuer(nb_joueurs, 13) # distribution 13 cartes à chaque joueur 
 for i, joueur in enumerate(liste_joueurs):
     joueur.main = distributions[i] # les cartes des joueurs sont stockées dans l'attribut main de chaque objet joueur (qui est une liste)
@@ -47,7 +58,7 @@ input("\n* Appuyez sur la touche Entrer pour commencer")
 print('\n' + '*' * 50) # séparateur pour l'esthétique 
 
 indice_joueur = random.randint(0, len(liste_joueurs) - 1) # choix aléatoire du joueur qui commence la partie
-compteur_passe = 0 # nombre passes successives
+compteur_passe = 0 # nombre passes successives(pour mettre fin partie)
 
 while True:
     joueur = liste_joueurs[indice_joueur] # joueur qui joue
@@ -55,8 +66,15 @@ while True:
     input("\n* Entrer pour valider")
     print("\nNombre de passe actuellement: {}".format(compteur_passe))
 
-    pioche = paquet.piocher() # carte piochée par le joueur
-    joueur.main.append(pioche) # ajout de la carte piochée à la main du joueur
+    if len(paquet.cartes) == 0: # si paquet vide, former à nouveau le paquet à partir du talon 
+        paquet.cartes = talon
+        paquet.melanger()
+        talon = [paquet.piocher()]
+        pioche = paquet.piocher() # carte piochée par le joueur
+        joueur.main.append(pioche) # ajout de la carte piochée à la main du joueur
+    else:
+        pioche = paquet.piocher() # carte piochée par le joueur
+        joueur.main.append(pioche) # ajout de la carte piochée à la main du joueur
     print("\nVous avez pioché : {}".format(pioche))
     
     print("\nVoici vos cartes : ")

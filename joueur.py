@@ -33,7 +33,7 @@ class Joueur:
                 cartes_choisies = [] # enlever les cartes choisies
             
             elif len(cartes_choisies) == 0: # pas de combinaison = passe (autorisé)
-                print("\nVous n'avez rien poser, donc vous passez")
+                print("\nVous n'avez rien posé, donc vous passez")
                 break
             
             elif len([carte for carte in cartes_choisies if carte.valeur == "JOKER"]) >= 2: # condition 2: pas plus de 2 jokers dans son choix
@@ -53,7 +53,7 @@ class Joueur:
                 break
             else:
                 print("\nCombinaison incorrecte: Les valeurs des cartes ne se suivent pas ou n'ont pas une différence de 1") 
-                cartes_choisies = []         
+                cartes_choisies = []
         
         cartes_choisies.sort(key=lambda carte: (carte.point)) # pour ordonner la liste cartes_choisies par point 
         print(f"Vous avez donc posé : {cartes_choisies}")
