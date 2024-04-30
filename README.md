@@ -11,8 +11,7 @@ des suites (cartes se suivant dans la même couleur), soit des collections (cart
 couleurs différentes, par exemple 3 valets : pique, cœur, trèfle).
 
 A chaque tour :
-• le joueur pioche une carte dans la pioche (facultatif : pioche soit dans la pioche, soit la carte
-du talon retournée)
+• le joueur pioche une carte dans la pioche 
 • pose une combinaison s’il le peut
 • et rejette une carte sur le talon face visible.
 
@@ -31,8 +30,9 @@ possible ou bien aucune carte en premier.
  - Gestion de la fin de partie 
 
 **Non fait (car facultatif)** 
- - (Facultatif : une fois le jeu commencé, les joueurs peuvent enrichir les combinaisons déjà posées (par exemple, rajouter le 4ème valet ou mettre un 10 de cœur après un 9 de cœur).)
- - (Facultatif : le joker peut être remplacé par la carte correspondante par un autre joueur, dans ce cas, le joueur ne peut le conserver dans son jeu, il doit le réutiliser immédiatement dans une autre combinaison.)
+ - Facultatif : pioche soit dans la pioche, soit la carte du talon retournée
+ - Facultatif : une fois le jeu commencé, les joueurs peuvent enrichir les combinaisons déjà posées (par exemple, rajouter le 4ème valet ou mettre un 10 de cœur après un 9 de cœur).
+ - Facultatif : le joker peut être remplacé par la carte correspondante par un autre joueur, dans ce cas, le joueur ne peut le conserver dans son jeu, il doit le réutiliser immédiatement dans une autre combinaison.
 
 **NB:** 
 Pour faciliter le test du programme et l'expérience du jeu, les cartes des joueurs ont été ordonnées (triées), et les valeurs numériques sont visibles.
